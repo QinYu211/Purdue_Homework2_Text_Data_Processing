@@ -1,0 +1,130 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 390,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Northwestern\n",
+      "South First\n",
+      "The EE building is at 465 nretsewhtroN Ave.\n",
+      "Meet me at 201 tsriF htuoS St. at noon\n"
+     ]
+    }
+   ],
+   "source": [
+    "# author:Tony Qin\n",
+    "# subject:Purdue_homework2_2&3 regex\n",
+    "\n",
+    "import re\n",
+    "        \n",
+    "def problem2(searchstring):\n",
+    "    \n",
+    "    # clue to identify street name:\n",
+    "    # One or more digits, followed by a space.\n",
+    "    # One or more words, each starting with a capital letter and then followed by zero or more lowercase letters. This will be followed by a space.\n",
+    "    # A road type, one of \"Rd.\", \"Dr.\", \"Ave.\" or \"St.\"\n",
+    "    \n",
+    "    \"\"\"\n",
+    "    Extract street name from address.\n",
+    "\n",
+    "    :param searchstring: string\n",
+    "    :return: string\n",
+    "    \"\"\"\n",
+    "    \n",
+    "    mystring =  searchstring\n",
+    "    keywordlist = [' Rd.',' Dr.',' Ave.',' St.']\n",
+    "    for i in range(len(keywordlist)):\n",
+    "        before_keyword, keyword, after_keyword = mystring.partition(keywordlist[i])\n",
+    "        if len(before_keyword) == len(mystring):\n",
+    "            xx='none';\n",
+    "        else:\n",
+    "            s = before_keyword\n",
+    "#             print(s)\n",
+    "\n",
+    "    p = re.compile(\"\\d+\\s(\\w+)+(\\s\\w+)*\")\n",
+    "    result = list(p.findall(s)[0])\n",
+    "    result = [x for x in result if str(x) != '']\n",
+    "    \n",
+    "    separator = ''\n",
+    "    result = separator.join(result)\n",
+    "    \n",
+    "    return result\n",
+    "    \n",
+    "    \n",
+    "    \n",
+    "    \n",
+    "    \n",
+    "def problem3(searchstring):\n",
+    "    \"\"\"\n",
+    "    Garble Street name.\n",
+    "\n",
+    "    :param searchstring: string\n",
+    "    :return: string\n",
+    "    \"\"\"\n",
+    "    \n",
+    "    mystring =  searchstring\n",
+    "    keywordlist = [' Rd.',' Dr.',' Ave.',' St.']\n",
+    "    for i in range(len(keywordlist)):\n",
+    "        before_keyword, keyword, after_keyword = mystring.partition(keywordlist[i])\n",
+    "        if len(before_keyword) == len(mystring):\n",
+    "            xx='none';\n",
+    "        else:\n",
+    "            s = before_keyword\n",
+    "#             print(s)\n",
+    "\n",
+    "    p = re.compile(\"\\d+\\s(\\w+)+(\\s\\w+)*\")\n",
+    "    result = list(p.findall(s)[0])\n",
+    "    result = [x for x in result if str(x) != '']\n",
+    "    separator = ''\n",
+    "    result = separator.join(result)\n",
+    "    \n",
+    "    target = result\n",
+    "    replace = target[::-1]\n",
+    "    output3 = mystring.replace(target, replace)\n",
+    "    \n",
+    "    return output3\n",
+    "\n",
+    "\n",
+    "if __name__ == '__main__' :\n",
+    "    print(problem2('The EE building is at 465 Northwestern Ave.')) #Northwestern\n",
+    "    print(problem2('Meet me at 201 South First St. at noon')) #South First\n",
+    "    \n",
+    "    print(problem3('The EE building is at 465 Northwestern Ave.'))\n",
+    "    print(problem3('Meet me at 201 South First St. at noon'))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.2"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
